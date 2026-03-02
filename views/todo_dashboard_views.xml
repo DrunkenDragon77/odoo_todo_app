@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View (KPI cards) -->
+    <record id="view_todo_dashboard_form" model="ir.ui.view">
+        <field name="name">todo.dashboard.form</field>
+        <field name="model">todo.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Todo Dashboard">
+                <sheet>
+                
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_open_tasks" class="oe_stat_button" icon="fa-tasks">
+                            <field name="total_count" widget="statinfo" string="Total"/>
+                        </button>
+
+                        <button type="object" name="action_open_todo" class="oe_stat_button" icon="fa-list">
+                            <field name="todo_count" widget="statinfo" string="To Do"/>
+                        </button>
+
+                        <button type="object" name="action_open_doing" class="oe_stat_button" icon="fa-spinner">
+                            <field name="doing_count" widget="statinfo" string="Doing"/>
+                        </button>
+
+                        <button type="object" name="action_open_done" class="oe_stat_button" icon="fa-check">
+                            <field name="done_count" widget="statinfo" string="Done"/>
+                        </button>
+                    </div>
+
+                    <group>
+                        <field name="name" readonly="1"/>
+                    </group>
+                <group>
+    <button name="action_open_analysis" type="object" class="btn btn-primary" string="Open Charts"/>
+</group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_todo_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">todo.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Create one dashboard record automatically -->
+    <record id="todo_dashboard_main" model="todo.dashboard">
+        <field name="name">Dashboard</field>
+    </record>
+
+</odoo>

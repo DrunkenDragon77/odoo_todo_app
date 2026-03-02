@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Pivot (optional but useful) -->
+    <record id="view_todo_task_pivot" model="ir.ui.view">
+        <field name="name">todo.task.pivot</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <pivot string="Tasks Analysis">
+                <field name="stage_id" type="row"/>
+                <field name="id" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Bar chart -->
+    <record id="view_todo_task_graph_bar" model="ir.ui.view">
+        <field name="name">todo.task.graph.bar</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <graph string="Tasks by Stage" type="bar">
+                <field name="stage_id" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pie chart -->
+    <record id="view_todo_task_graph_pie" model="ir.ui.view">
+        <field name="name">todo.task.graph.pie</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <graph string="Tasks by Stage" type="pie">
+                <field name="stage_id" type="row"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action to open charts -->
+    <record id="action_todo_task_analysis" model="ir.actions.act_window">
+        <field name="name">Tasks Analysis</field>
+        <field name="res_model">todo.task</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

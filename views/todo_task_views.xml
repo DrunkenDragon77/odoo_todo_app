@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List View (Odoo 19) -->
+    <record id="view_todo_task_list" model="ir.ui.view">
+        <field name="name">todo.task.list</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="stage_id"/>
+                <field name="due_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_todo_task_form" model="ir.ui.view">
+        <field name="name">todo.task.form</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="stage_id"/>
+                        <field name="due_date"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View (grouped by stage) -->
+    <record id="view_todo_task_kanban" model="ir.ui.view">
+        <field name="name">todo.task.kanban</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id">
+            <header>
+                <div class="row mb-3">
+
+                     <div class="col-3">
+                      <div class="alert alert-success text-center">
+                <strong>Total Tasks</strong>
+                <div><t t-esc="len(records)"/></div> 
+            </div>
+        </div>
+
+    </div>
+</header>
+    <field name="stage_id"/>
+    <field name="name"/>
+    <field name="due_date"/>
+    <templates>
+        <t t-name="card">
+            <div class="oe_kanban_global_click">
+                <strong><field name="name"/></strong>
+                <div t-if="record.due_date.raw_value">
+                    Due: <field name="due_date"/>
+                       </div>
+                     </div>
+                  </t>
+             </templates>
+        </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_todo_task" model="ir.actions.act_window">
+        <field name="name">Todo Tasks</field>
+        <field name="res_model">todo.task</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+</odoo>

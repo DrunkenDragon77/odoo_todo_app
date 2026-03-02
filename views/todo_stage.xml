@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Default Stages -->
+    <record id="todo_stage_todo" model="todo.stage">
+        <field name="name">To Do</field>
+        <field name="sequence">1</field>
+    </record>
+
+    <record id="todo_stage_doing" model="todo.stage">
+        <field name="name">In Progress</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="todo_stage_done" model="todo.stage">
+        <field name="name">Done</field>
+        <field name="sequence">3</field>
+    </record>
+
+</odoo>
